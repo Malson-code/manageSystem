@@ -1,0 +1,55 @@
+.mal-content-layout{
+  padding: 0 12px;
+  .mal-content{
+    background-color: #fff;
+    min-height: 200px;
+    margin: 0;
+    padding: 16px;
+    overflow: auto;
+    min-width: 1000px;
+  }
+  .mal-breadcrumb{
+    margin: 10px 0;
+  }
+}
+.mal-header{
+  padding: 0 20px;
+  color: #fff;
+  background-color: #0c4275;
+  .ant-badge{
+    color: #fff;
+  }
+  .mal-logo{
+    width: 200px;
+    height:40px;
+    line-height: 36px;
+    //background-color: #fff;
+    border-radius: 10px;
+    float: left;
+    margin: 10px;
+    text-align: left;
+    font-size:28px;
+    cursor: pointer;
+    //border:2px solid #333;
+  }
+  .header-setting-col{
+    float: left;
+    margin: 0 4px;
+  }
+}
+span.admin-drop{
+  padding: 6px 30px;
+  text-align: center;
+}
+.mal-leftmenu{
+  background-color: #fff;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+//面包屑
+.bread-cp{
+  cursor: pointer;
+  &:hover{
+    color: #0c4275;
+  }
+}

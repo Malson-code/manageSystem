@@ -1,0 +1,46 @@
+.mal-login-wrap{
+  width: 370px;
+  height:340px;
+  position: absolute;
+  left: 50%;
+  top:50%;
+  transform: translate(-175px,-200px);
+  .login-input{
+    width: 100%;
+  }
+  .forget-password{
+    float: right;
+    color: #33c3ff;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .other-style{
+    margin-right: 6px;
+  }
+  .other-style-icon{
+    @extend .other-style;
+    font-size:16px;
+    cursor: pointer;
+    &:hover{
+      color: #33c3ff;
+    }
+  }
+  .log-register{
+    @extend .forget-password;
+    margin-right: 20px;
+  }
+  .login-title{
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 40px;
+    font-weight: bold;
+  }
+}
+.login-bg{
+  height:100%;
+  width: 100%;
+  background-image: url("../../imgs/bg.svg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: #f0f2f5;
+}
