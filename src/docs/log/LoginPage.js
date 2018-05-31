@@ -5,7 +5,7 @@ import React from 'react';
 import {Icon, Checkbox, Form, Input, Button} from 'antd';
 import './log.scss';
 import HandleChange from '../../common/HandleChange';
-
+import common from '../../common/common';
 const FormItem = Form.Item;
 
 @HandleChange
@@ -46,7 +46,8 @@ class LoginPage extends React.Component {
         window.localStorage.account = this.props.state.inputVal.account;
         window.localStorage.password = this.props.state.inputVal.password;
       }
-      this.props.history.push('/main');
+      let home = common.homeUrl || '/home';
+      this.props.history.push(home);
     }
   }
   handleCheckChange = (e) => {
@@ -77,6 +78,7 @@ class LoginPage extends React.Component {
                     onChange={actions.handleInputChange}
                     value={inputVal.account}
                     size='large'
+                    autoComplete = 'username'
                 />
               </FormItem>
               <FormItem
@@ -94,6 +96,7 @@ class LoginPage extends React.Component {
                     className='login-input'
                     onChange={actions.handleInputChange}
                     value={inputVal.password}
+                    autoComplete = 'current-password'
                 />
               </FormItem>
               <div style={{marginTop: 0}}>

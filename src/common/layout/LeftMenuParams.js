@@ -27,7 +27,7 @@ let menuParams = [
         component:ChartsPage
       },
       {
-        name:'第二菜单子项2',
+        name:'404',
         to:'/docs/404',
       },
     ]

@@ -16,7 +16,7 @@ class MainPage extends React.Component{
   }
   render(){
     return(
-          <div>哈哈</div>
+          <div style={{height:800,backgroundColor:'#ccc'}}>哈哈</div>
     )
   }
 }

@@ -17,7 +17,8 @@ class LeftMenu extends React.Component{
     super(props);
     this.state={
       selectKey:[],
-      openKeys:[]
+      openKeys:[],
+      collapsed:false
     }
   }
   /**
@@ -30,13 +31,13 @@ class LeftMenu extends React.Component{
       param += '/' + item;
       openPath.push(param);
     });
+    if(window.localStorage.leftMenu){
+      this.setState({collapsed:true});
+    }
     this.setState({selectKey:[path],openKeys:openPath});
   }
   componentWillMount(){
     this.initData();
-  }
-  componentWillReceiveProps(nextProps){
-    // this.initData();
   }
   /**
    *  运用递归算法  计算出当前的左侧菜单
@@ -47,10 +48,10 @@ class LeftMenu extends React.Component{
       if(item.children && item.children.length){
         let newCur = this.getMenus(item.children);
         let icon = item.icon ? item.icon : 'close-circle-o';
-        cur = <SubMenu key={item.to} title={<span><Icon type={icon} />{item.name}</span>}>{newCur}</SubMenu>;
+        cur = <SubMenu key={item.to} title={<span><Icon type={icon} /><span>{item.name}</span></span>}>{newCur}</SubMenu>;
       }else{
         let icon = item.icon ? item.icon : 'file';
-        cur = <MenuItem key={item.to} ><Icon type={ icon } />{item.name}</MenuItem>
+        cur = <MenuItem key={item.to} ><Icon type={ icon } /><span>{item.name}</span></MenuItem>
       }
       return cur;
     });
@@ -83,22 +84,43 @@ class LeftMenu extends React.Component{
     pathname = pathname.substr(-1)==='/'?pathname.substring(0,pathname.length-1):pathname;
     return pathname
   }
+  /**
+   *  改变左侧菜单拉伸情况
+  */
+  changeLeftStatus = ()=>{
+    let collapsed = this.state.collapsed;
+    if(collapsed){
+      window.localStorage.removeItem('leftMenu');
+    }else{
+      window.localStorage.leftMenu = true;
+    }
+    this.setState({collapsed:!collapsed});
+  }
   render(){
     let menuContent = [];
     if( LeftMenuParams instanceof Array && LeftMenuParams.length){
       menuContent = this.getMenus(LeftMenuParams)
     }
-    let { selectKey , openKeys } = this.state;
+    let { selectKey , openKeys ,collapsed} = this.state;
+    let iconType = collapsed?'menu-unfold' : 'menu-fold';
     return(
-        <Sider width={200} className='mal-leftmenu'>
+        <Sider width={200}
+               className='mal-leftmenu'
+               collapsible
+               collapsed={ collapsed }
+               onCollapse={this.changeLeftStatus}
+               trigger = {<div className='left-resize'><Icon type={iconType} /></div>}
+        >
           <Menu
               mode="inline"
               theme='light'
-              selectedKeys = { selectKey }
-              openKeys = { openKeys }
+              defaultSelectedKeys={selectKey}
+              defaultOpenKeys={openKeys}
+              // selectedKeys = { selectKey }
+              // openKeys = { openKeys }
               style={{ height: '100%', borderRight: 0 }}
               onClick={this.handleMenuClick}
-              onOpenChange = {this.handleOpenChange}
+              // onOpenChange = {this.handleOpenChange}
           >
             { menuContent }
           </Menu>

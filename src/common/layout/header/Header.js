@@ -23,7 +23,7 @@ class MalHeader extends React.Component{
   render(){
     return(
         <Header className="mal-header">
-          <div className="mal-logo">强哥开发云平台</div>
+          <div className="mal-logo">开发云平台</div>
           <TopMenus />
           <div style={{float:'right'}}>
             <Setting />
