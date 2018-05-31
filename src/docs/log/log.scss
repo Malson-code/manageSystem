@@ -5,6 +5,9 @@
   left: 50%;
   top:50%;
   transform: translate(-175px,-200px);
+  .has-error .ant-form-explain{
+    margin-top: 2px;
+  }
   .login-input{
     width: 100%;
   }

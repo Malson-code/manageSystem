@@ -38,9 +38,6 @@ function changeToRoutes(Arr=[]) {
   })
 }
 
-console.log(leftRoutes);
-
-
 let routes = [
   { path:'/', component:Login, exact:true },
   { path:'/login', component:Login, exact:true },

@@ -202,6 +202,12 @@ function HandleChange(Container) {
       }
     };
     /**
+     *  初始化更新数据
+    */
+    initDataField = (data)=>{
+      this.setState({inputVal:data});
+    };
+    /**
      *  获取子组件的实例
      */
     getChildRef = ()=>this.clildCom;
@@ -213,7 +219,8 @@ function HandleChange(Container) {
         handleInputBlur:this.handleInputBlur,
         formValidate:this.formValidate,
         validate:this.validate,
-        initField:this.validRules
+        initField:this.validRules,
+        initDataField:this.initDataField
       };
       return (
           // 高阶组件往基础组件中传入了一个各个属性，这是高阶组件赋予基础组件的新能力，当然，根据实际需求还可以添加更为复杂的新能力
