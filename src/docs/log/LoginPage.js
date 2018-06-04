@@ -4,6 +4,7 @@
 import React from 'react';
 import {Icon, Checkbox, Form, Input, Button} from 'antd';
 import './log.scss';
+import '../../style/common.scss';
 import HandleChange from '../../common/HandleChange';
 import common from '../../common/common';
 const FormItem = Form.Item;

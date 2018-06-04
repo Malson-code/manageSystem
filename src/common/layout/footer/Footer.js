@@ -3,10 +3,9 @@
  */
 
 import React from 'react';
-import classNames from 'classnames';
 
 
-class xxx extends React.Component{
+class Footer extends React.Component{
   constructor(props){
     super(props);
     this.state={
@@ -21,4 +20,4 @@ class xxx extends React.Component{
     )
   }
 }
-export default xxx;
+export default Footer;

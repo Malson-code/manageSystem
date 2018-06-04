@@ -4,7 +4,7 @@
 
 import React from 'react';
 import {ValidRegExp,ValidMsg} from './ValidRegExp';
-let maxF = false;
+let maxF = false;//最大长度做截断处理
 // 基础组件作为高阶组件的参数传入
 /**
  *  处理antd事件的高阶组件
@@ -24,12 +24,13 @@ let maxF = false;
                                } ........
                               ];
  在相应的render定义
+                             const formLayout = 'horizontal';//可不要
                              const {validBackData,inputVal} = this.props.state;
                              const {actions} = this.props;
  
  在相应的form上添加属性
-                             help={validBackData.pointContentHint}
-                             validateStatus={validBackData.pointContentStatus}
+                             help={validBackData.xxxHint}
+                             validateStatus={validBackData.xxxStatus}
  
  在form内的Input或其他上添加
                             onChange={actions.handleInputChange}
@@ -195,7 +196,9 @@ function HandleChange(Container) {
         totalField.map(item=>{
           this.state.inputVal[item] = '';
         });
-        this.setState({validRules});
+        if(validRules.length){
+          this.setState({validRules});
+        }
       }
       else{
         console.warn('初始化数据错误！');

@@ -6,8 +6,8 @@ import React from 'react';
 import './error.scss';
 import { Button  } from 'antd';
 import {Link} from 'react-router-dom';
+import Animate from './Animate';
 import common from '../../common/common';
-import QueueAnim from 'rc-queue-anim';
 
 class page extends React.Component{
   constructor(props){
@@ -23,11 +23,7 @@ class page extends React.Component{
   render(){
     let homeUrl = common.homeUrl || '/home';
     return(
-        <QueueAnim className="demo-content"
-                   animConfig={[
-                     { opacity: [1, 0], translateY: [0, 50] },
-                     { opacity: [1, 0], translateY: [0, -50] }
-                   ]}>
+        <Animate>
           <div className='error-wrap' key='1'>
             <div className='error-icon'/>
             <div className='error-text'>
@@ -36,7 +32,7 @@ class page extends React.Component{
               <Button type='primary' style={{marginTop:20}}><Link to={homeUrl}>返回首页</Link></Button>
             </div>
           </div>
-        </QueueAnim>
+        </Animate>
     )
   }
 }

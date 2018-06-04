@@ -1,0 +1,31 @@
+//form根据label size排列
+.flex-form{
+  .ant-form-item{
+    display: flex;
+  }
+  .ant-form-item-control-wrapper {
+    flex: 1;
+  }
+}
+.flex-form-item{
+  display: flex;
+  .ant-form-item-control-wrapper {
+    flex: 1;
+  }
+}
+.ant-form{
+  .ant-form-item{
+    margin-bottom: 10px;
+  }
+}
+//按钮之间的距离
+.btn-margin{
+  margin-right: 8px;
+}
+.filter-btn{
+  width: 100px;
+  margin-top: 4px;
+}
+.table-btns{
+  margin: 12px 0;
+}

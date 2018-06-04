@@ -1,6 +1,6 @@
 {
   "topMenu": false,
   "topMessage":true,
-  "breadcrumb":true,
+  "breadcrumb":false,
   "homeUrl":"/home"
 }
