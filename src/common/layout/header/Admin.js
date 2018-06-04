@@ -24,15 +24,15 @@ class Admin extends React.Component{
     switch (params.key){
       //个人信息
       case '1':
-        Modal.error({
+        Modal.info({
           title: '我是个人信息',
           content: '我是个人信息',
         });
         break;
       case '2':
-        Modal.error({
-          title: '我是个人信息',
-          content: '我是个人信息',
+        Modal.info({
+          title: '我是XXX',
+          content: '我是XXX',
         });
         break;
       case "3":

@@ -87,7 +87,14 @@ class LeftMenu extends React.Component{
   /**
    *  改变左侧菜单拉伸情况
   */
+  initWindowResize = ()=>{
+    const event = document.createEvent('HTMLEvents');
+    event.initEvent('resize', true, false);
+    window.dispatchEvent(event);
+  }
   changeLeftStatus = ()=>{
+    //手动触发window resize
+    this.initWindowResize();
     let collapsed = this.state.collapsed;
     if(collapsed){
       window.localStorage.removeItem('leftMenu');

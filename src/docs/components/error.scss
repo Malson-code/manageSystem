@@ -1,0 +1,23 @@
+.error-wrap{
+  display: flex;
+  margin-top: 8%;
+  margin-left: 20%;
+  align-items: center;
+    .error-icon{
+      width: 360px;
+      height: 294px;
+      background-image: url("../../imgs/404.svg");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      float: right;
+      margin-right: 12%;
+  }
+  .error-text{
+    flex: auto;
+    .error-title{
+      font-size: 60px;
+      margin-bottom: 0;
+      font-family: "Monospaced Number";
+    }
+  }
+}

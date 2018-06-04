@@ -3,6 +3,7 @@
  */
 
 import React from 'react';
+import common from './common';
 import {ValidRegExp,ValidMsg} from './ValidRegExp';
 let maxF = false;//最大长度做截断处理
 // 基础组件作为高阶组件的参数传入
@@ -108,6 +109,7 @@ function HandleChange(Container) {
       if(id){
         //找出对应的rule
         let matchRule = rules.find(item=>item.id===id);
+        if(!matchRule) return flag;
         let msg = this._check(matchRule,inputVal[id],id);
         this._editError(id,msg);
         if(msg&&msg!==''){
@@ -207,8 +209,9 @@ function HandleChange(Container) {
     /**
      *  初始化更新数据
     */
-    initDataField = (data)=>{
-      this.setState({inputVal:data});
+    initUpdataField = (data)=>{
+      let inputVal = common.deepCopyValue(data);
+      this.setState({inputVal});
     };
     /**
      *  获取子组件的实例
@@ -223,7 +226,7 @@ function HandleChange(Container) {
         formValidate:this.formValidate,
         validate:this.validate,
         initField:this.validRules,
-        initDataField:this.initDataField
+        initUpdataField:this.initUpdataField
       };
       return (
           // 高阶组件往基础组件中传入了一个各个属性，这是高阶组件赋予基础组件的新能力，当然，根据实际需求还可以添加更为复杂的新能力

@@ -7,23 +7,29 @@ import {Button,Modal} from 'antd';
 import FilterPage from './component/FilterPage';
 import TablePage from './component/TablePage';
 import Animate from '../components/Animate';
-let data = [];
+import FormPage from './component/FormPage';
+import common from "../../common/common";
+let allData = [];
 function setData() {
   for(let i=0;i<30;i++){
     let obj = {
       key:'key'+i,
-      name:'我是名称'+i,
-      age:Math.ceil(Math.random()*30),
-      address:'无锡市锡山区东港红豆集团',
+      a:'我是名称'+i,
+      b:Math.ceil(Math.random()*30),
+      c:'无锡市锡山区东港红豆集团',
+      d:'大声道',
+      e:'达大厦'
     };
-    data.push(obj);
+    allData.push(obj);
   }
 }
 class MainPage extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      tableLoading:false
+      tableLoading:false,
+      modalVisible:false,
+      modalType:'',
     }
   }
   
@@ -31,16 +37,38 @@ class MainPage extends React.Component{
     this.refresh()
   }
   search = (filter)=>{
+    this.setState({tableLoading:true});
     console.log(filter);
   };
   resetFilter = ()=>{
   
   };
   add = ()=>{
-    Modal.info({
-      title:'信息',
-      content:'还在开发中....'
-    })
+    this.setState({modalType:'add',modalVisible:true});
+  };
+  edit = (data)=>{
+    this.setState({modalType:'edit',modalVisible:true});
+    this.createFormPage.getChildRef().initUpdateData(data);
+  };
+  handleOk = ()=>{
+    let type = this.state.modalType;
+    let data = common.deepCopyValue(this.createFormPage.state.inputVal);
+    //点击确定  判断是新增还是编辑  调用不同的方法
+    if(type==='add'){
+      data.key = Math.random();
+      allData.unshift(data);
+    }else if(type==='edit'){
+      allData = allData.map(item=>{
+        if(item.key===data.key){
+          item = data;
+        }
+        return item;
+      });
+    }
+    this.setState({modalVisible:false});
+  };
+  handleCancel = ()=>{
+    this.setState({modalVisible:false});
   };
   refresh = ()=>{
     this.setState({tableLoading:true});
@@ -53,7 +81,16 @@ class MainPage extends React.Component{
     let filterProps = {
       search:this.search,
       resetFilter:this.resetFilter
-    }
+    },
+    tableProps = {
+      edit:this.edit
+    },
+    formProps = {
+      modalVisible:this.state.modalVisible,
+      modalType:this.state.modalType,
+      handleOk:this.handleOk,
+      handleCancel:this.handleCancel
+    };
     return(
         <Animate type='right'>
           <div key='1'>
@@ -62,7 +99,8 @@ class MainPage extends React.Component{
               <Button type='primary' icon='plus' onClick={this.add} className='btn-margin'>新增</Button>
               <Button icon='sync' onClick={this.refresh} className='btn-margin'>刷新</Button>
             </div>
-            <TablePage dataSource={data}  loading={this.state.tableLoading} />
+            <TablePage dataSource={allData}  loading={this.state.tableLoading} {...tableProps} />
+            <FormPage ref={ref=>this.createFormPage = ref} {...formProps}/>
           </div>
         </Animate>
     )
