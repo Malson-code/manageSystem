@@ -5,6 +5,7 @@ import React from 'react';
 import MalLayout from './common/layout/MalLayout';
 import {Route,Switch} from 'react-router-dom';
 import Login from './docs/log/LoginPage';
+import ForgetPsw from './docs/log/ForgetPsw';
 import Error404 from './docs/components/404';
 
 //左侧菜单路径  转换为路由信息
@@ -41,6 +42,7 @@ function changeToRoutes(Arr=[]) {
 let routes = [
   { path:'/', component:Login, exact:true },
   { path:'/login', component:Login, exact:true },
+  { path:'/forgetPsw', component:ForgetPsw, exact:true },
     ...leftRoutes
 ];
 

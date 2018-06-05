@@ -2,10 +2,8 @@
  *   Create by Malson on 2018/6/1
  */
 import React from 'react';
-import {Icon, Checkbox, Form, Input, Button,Row, Col} from 'antd';
+import {Form, Input, Button,Row, Col} from 'antd';
 import HandleChange from '../../../common/HandleChange';
-import common from '../../../common/common';
-
 const FormItem = Form.Item;
 
 @HandleChange

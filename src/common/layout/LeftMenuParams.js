@@ -20,6 +20,7 @@ let menuParams = [
   {
     name:"次级菜单",
     to:"/docs",
+    icon:'area-chart',
     children:[
       {
         name:'charts菜单',

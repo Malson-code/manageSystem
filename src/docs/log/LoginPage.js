@@ -7,8 +7,10 @@ import './log.scss';
 import '../../style/common.scss';
 import HandleChange from '../../common/HandleChange';
 import common from '../../common/common';
+import { withRouter } from 'react-router-dom';
 const FormItem = Form.Item;
 
+@withRouter
 @HandleChange
 class LoginPage extends React.Component {
   constructor(props) {
@@ -53,8 +55,10 @@ class LoginPage extends React.Component {
   }
   handleCheckChange = (e) => {
     this.setState({checked: e.target.checked});
-  }
-  
+  };
+  forgetPsw = ()=>{
+    this.props.history.push('/forgetPsw');
+  };
   render() {
     const formLayout = 'horizontal';
     const {validBackData, inputVal} = this.props.state;
@@ -102,7 +106,7 @@ class LoginPage extends React.Component {
               </FormItem>
               <div style={{marginTop: 0}}>
                 <Checkbox checked={this.state.checked} onChange={this.handleCheckChange}>自动登录</Checkbox>
-                <span className='forget-password'>忘记密码</span>
+                <span className='forget-password' onClick={this.forgetPsw}>忘记密码</span>
               </div>
               <Button
                   type="primary"
@@ -117,7 +121,7 @@ class LoginPage extends React.Component {
                 <Icon type="wechat" className='other-style-icon'/>
                 <Icon type="taobao-circle" className='other-style-icon'/>
                 <Icon type="alipay-circle" className='other-style-icon'/>
-                <span className='log-register'>注册</span>
+                {/*<span className='log-register'>注册</span>*/}
               </div>
             </Form>
           </div>

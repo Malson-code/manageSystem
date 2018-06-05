@@ -24,12 +24,14 @@ class page extends React.Component{
     let homeUrl = common.homeUrl || '/home';
     return(
         <Animate>
-          <div className='error-wrap' key='1'>
-            <div className='error-icon'/>
-            <div className='error-text'>
-              <h1 className='error-title'>404</h1>
-              <div >您访问的页面不存在！</div>
-              <Button type='primary' style={{marginTop:20}}><Link to={homeUrl}>返回首页</Link></Button>
+          <div key='1'>
+            <div className='error-wrap'>
+              <div className='error-icon'/>
+              <div className='error-text'>
+                <h1 className='error-title'>404</h1>
+                <div >您访问的页面不存在！</div>
+                <Button type='primary' style={{marginTop:20}}><Link to={homeUrl}>返回首页</Link></Button>
+              </div>
             </div>
           </div>
         </Animate>
