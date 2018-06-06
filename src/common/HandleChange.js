@@ -201,6 +201,7 @@ function HandleChange(Container) {
         if(validRules.length){
           this.setState({validRules});
         }
+        this.setState({validBackData:{}});
       }
       else{
         console.warn('初始化数据错误！');

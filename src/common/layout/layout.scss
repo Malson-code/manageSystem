@@ -1,13 +1,13 @@
 .mal-content-layout{
   padding-left: 12px;
   .mal-content{
-    background-color: #fff;
     min-height: 200px;
     margin: 0;
     padding: 16px;
     padding-right: 30px;
-    overflow: auto;
-    overflow-x: hidden;
+    //overflow: auto;
+    //overflow-x: hidden;
+    //background-color: #fff;
     min-width: 1000px;
     border-top:1.6px solid #ddd;
   }
@@ -39,6 +39,8 @@
     float: left;
     margin: 0 4px;
   }
+}
+.person-info{
 }
 span.admin-drop{
   padding: 6px 30px;

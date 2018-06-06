@@ -8,6 +8,7 @@ import Animate from '../components/Animate';
 import CheckIdentity from './component/CheckIdentity';
 import ResetPsw from './component/ResetPsw';
 import { withRouter} from 'react-router-dom';
+import SuccessPic from '../../imgs/success.svg';
 import './log.scss';
 const Step = Steps.Step;
 
@@ -49,7 +50,7 @@ class ForgetPsw extends React.Component{
         title:'设置完成',
         content:
             <div style={{textAlign:'center',fontSize:'22px',color:'#42ff96'}}>
-                设置成功！
+                 <img src={SuccessPic} style={{width:24,verticalAlign:'sub',marginRight:10}}/>设置成功！
             </div>
       },
     ];

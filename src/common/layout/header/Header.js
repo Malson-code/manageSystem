@@ -9,8 +9,10 @@ import Events from './Events';
 import Admin from './Admin';
 import TopMenus from './TopMenus';
 import common from '../../common';
+import {withRouter} from 'react-router-dom';
 const { Header } = Layout;
 
+@withRouter
 class MalHeader extends React.Component{
   constructor(props){
     super(props);
@@ -18,12 +20,18 @@ class MalHeader extends React.Component{
     
     }
   }
+  goHome = ()=>{
+    let path = this.props.location.pathname;
+    if(path!=='/home'){
+      this.props.history.push('/home');
+    }
+  };
   componentDidMount(){
   }
   render(){
     return(
         <Header className="mal-header">
-          <div className="mal-logo">开发云平台</div>
+          <div className="mal-logo" onClick={this.goHome}>开发云平台</div>
           <TopMenus />
           <div style={{float:'right'}}>
             <Setting />
