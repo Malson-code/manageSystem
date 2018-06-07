@@ -108,7 +108,7 @@ function HandleChange(Container) {
       //有id  做单个检验
       if(id){
         //找出对应的rule
-        let matchRule = rules.find(item=>item.id===id);
+        let matchRule = rules.filter(item=>item.id===id);
         if(!matchRule) return flag;
         let msg = this._check(matchRule,inputVal[id],id);
         this._editError(id,msg);

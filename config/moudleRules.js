@@ -6,7 +6,17 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const paths = require('./paths');
 
 module.exports =  [
+  
   // TODO: Disable require.ensure as it's not a standard language feature.
+  // Process JS with Babel.
+  {
+    test: /\.(js|jsx|mjs)$/,
+    include: paths.appSrc,
+    loader: require.resolve('babel-loader'),
+    options: {
+      cacheDirectory: true,
+    },
+  },
   // We are waiting for https://github.com/facebookincubator/create-react-app/issues/2176.
   // { parser: { requireEnsure: false } },
   
@@ -76,15 +86,6 @@ module.exports =  [
             },
           },
         ],
-      },
-      // Process JS with Babel.
-      {
-        test: /\.(js|jsx|mjs)$/,
-        include: paths.appSrc,
-        loader: require.resolve('babel-loader'),
-        options: {
-          cacheDirectory: true,
-        },
       },
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.

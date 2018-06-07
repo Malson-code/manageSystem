@@ -53,9 +53,11 @@ module.exports = {
   bail: true,
   // We generate sourcemaps in production. This is slow but gives good results.
   // You can exclude the *.map files from the build during deployment.
-  devtool: shouldUseSourceMap ? 'source-map' : false,
+  // devtool: shouldUseSourceMap ? 'source-map' : false,
+  devtool:false,
   // In production, we only want to load the polyfills and the app code.
   entry: [require.resolve('./polyfills'), paths.appIndexJs],
+  // vendor:['react','react-dom','jquery'],
   output: {
     // The build folder.
     path: paths.appBuild,
@@ -109,6 +111,8 @@ module.exports = {
     // In production, it will be an empty string unless you specify "homepage"
     // in `package.json`, in which case it will be the pathname of that URL.
     new InterpolateHtmlPlugin(env.raw),
+    //separate big files
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),//分离部分大文件
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
       inject: true,
@@ -150,7 +154,8 @@ module.exports = {
         // https://github.com/facebookincubator/create-react-app/issues/2488
         ascii_only: true,
       },
-      sourceMap: shouldUseSourceMap,
+      // sourceMap: shouldUseSourceMap,
+      sourceMap:false
     }),
     // Note: this won't work without ExtractTextPlugin.extract(..) in `loaders`.
     new ExtractTextPlugin({
