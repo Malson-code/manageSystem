@@ -79,7 +79,8 @@ class Admin extends React.Component{
     this.setState({personModal:false});
   };
   resetPsw = ()=>{
-    this.setState({personModal:false,resetPswModal:true});
+    //不去除之前的MODAL  personModal:false,
+    this.setState({resetPswModal:true});
   };
   hideResetModal = ()=>{
     this.setState({resetPswModal:false});

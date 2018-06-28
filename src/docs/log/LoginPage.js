@@ -45,14 +45,20 @@ class LoginPage extends React.Component {
   onSure = () => {
     const {formValidate} = this.props.actions;
     if (formValidate()) {
-      if (this.state.checked) {
-        window.localStorage.account = this.props.state.inputVal.account;
-        window.localStorage.password = this.props.state.inputVal.password;
-      }
+      window.localStorage.account = this.props.state.inputVal.account;
+      window.localStorage.password = this.props.state.inputVal.password;
       let home = common.homeUrl || '/home';
       this.props.history.push(home);
     }
-  }
+  };
+  qqLogin = ()=>{
+    console.log(QC);
+    QC.api('get_user_info', '', 'json', 'GET');
+    QC.Login.showPopup({
+      appId:"1106992696",
+      redirectURI:"http://127.0.0.1:3000/"
+    })
+  };
   handleCheckChange = (e) => {
     this.setState({checked: e.target.checked});
   };
@@ -119,6 +125,7 @@ class LoginPage extends React.Component {
               <div style={{marginTop: 15}}>
                 <span className='other-style'>其他方式登录</span>
                 <Icon type="wechat" className='other-style-icon'/>
+                <Icon type="qq" className='other-style-icon' onClick={this.qqLogin}/>
                 <Icon type="taobao-circle" className='other-style-icon'/>
                 <Icon type="alipay-circle" className='other-style-icon'/>
                 {/*<span className='log-register'>注册</span>*/}

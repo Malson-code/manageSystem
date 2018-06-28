@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { Layout, Menu,Icon} from 'antd';
-import LeftMenuParams from '../LeftMenuParams';
+import LeftMenuParams from '../../menus/LeftMenuParams';
 import {BrowserRouter, Route, Link, Switch,Redirect,Router,HashRouter,withRouter} from 'react-router-dom';
 
 const { Sider } = Layout;
@@ -25,12 +25,17 @@ class LeftMenu extends React.Component{
    *  第一次加载的时候  配置路由
   */
   initData = ()=>{
+    console.log(1);
+    let matchId = this.props.match.params.id;
     let path = this.getPathName();
     let openPath = [],param = '';
     path.substring(1).split('/').map(item=>{
       param += '/' + item;
       openPath.push(param);
     });
+    if(matchId){
+      path = openPath[openPath.length-2];
+    }
     if(window.localStorage.leftMenu){
       this.setState({collapsed:true});
     }

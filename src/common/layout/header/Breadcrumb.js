@@ -5,7 +5,7 @@ import React from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import {BrowserRouter, Route, Link, Switch,Redirect,Router,HashRouter,withRouter} from 'react-router-dom';
 import common from '../../common';
-import LeftMenuParams from '../LeftMenuParams';
+import LeftMenuParams from '../../menus/LeftMenuParams';
 
 @withRouter
 class BreadcrumbCom extends React.Component{

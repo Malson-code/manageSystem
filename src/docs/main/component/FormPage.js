@@ -51,7 +51,7 @@ class CreateFormPage extends React.Component{
   handleCancel = ()=>{
     this.props.handleCancel();
     this.init();
-  }
+  };
   render(){
     const formLayout = 'horizontal';
     const textLabel = {

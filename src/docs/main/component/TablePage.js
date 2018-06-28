@@ -4,7 +4,6 @@
 import React from 'react';
 import {Table,Select,Button} from 'antd';
 
-
 class TablePage extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +17,6 @@ class TablePage extends React.Component {
       {
         title: '名称',
         dataIndex: 'a',
-        render: text => <a href="javascript:;">{text}</a>,
       },
       {
         title: '年龄（岁）',
@@ -43,7 +41,8 @@ class TablePage extends React.Component {
       render:(text,record)=>{
         return (
             <div>
-              <Button size='small' onClick={()=>this.props.edit(record)}>修改</Button>
+              <Button size='small' onClick={()=>this.props.check(record)}>查看</Button>
+              <Button size='small' onClick={()=>this.props.edit(record)} className="btn-margin">修改</Button>
             </div>
             )
       }

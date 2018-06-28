@@ -6,16 +6,17 @@ import {BrowserRouter, Route, Link, Switch,Redirect,Router,HashRouter,withRouter
 import { LocaleProvider } from 'antd';
 import zh_CN from 'antd/lib/locale-provider/zh_CN';
 import 'moment/locale/zh-cn';
+import history from './history';
 ReactDOM.render(
     <LocaleProvider locale={zh_CN}>
-      <HashRouter>
+      <Router history={history}>
         <div style={{height:'100%',width :'100%'}}>
           <Route component={Assess}/>
           <Switch>
             { Routes }
           </Switch>
         </div>
-      </HashRouter>
+      </Router>
     </LocaleProvider>,
     document.getElementById('root')
 );

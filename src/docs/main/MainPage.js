@@ -9,6 +9,8 @@ import TablePage from './component/TablePage';
 import Animate from '../components/Animate';
 import FormPage from './component/FormPage';
 import common from "../../common/common";
+import history from '../../history';
+
 let allData = [];
 function setData() {
   for(let i=0;i<30;i++){
@@ -50,6 +52,11 @@ class MainPage extends React.Component{
     this.setState({modalType:'edit',modalVisible:true});
     this.createFormPage.getChildRef().initUpdateData(data);
   };
+  check = (data)=>{
+    history.push({
+      pathname:'/home/'+data.key
+    });
+  };
   handleOk = ()=>{
     let type = this.state.modalType;
     let data = common.deepCopyValue(this.createFormPage.state.inputVal);
@@ -76,14 +83,15 @@ class MainPage extends React.Component{
       setData();
       this.setState({tableLoading:false});
     },1000)
-  }
+  };
   render(){
     let filterProps = {
       search:this.search,
       resetFilter:this.resetFilter
     },
     tableProps = {
-      edit:this.edit
+      edit:this.edit,
+      check:this.check
     },
     formProps = {
       modalVisible:this.state.modalVisible,

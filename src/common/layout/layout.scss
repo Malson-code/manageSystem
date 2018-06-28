@@ -19,6 +19,7 @@
   padding: 0 20px;
   color: #fff;
   background-color: #0c4275;
+  min-width: 550px;
   .ant-badge{
     color: #fff;
   }
@@ -26,14 +27,17 @@
     width: 200px;
     height:40px;
     line-height: 36px;
-    //background-color: #fff;
     border-radius: 10px;
     float: left;
     margin: 10px;
+    margin-left: -10px;
     text-align: left;
     font-size:28px;
     cursor: pointer;
-    //border:2px solid #333;
+    background: url("../../imgs/logo.svg") no-repeat;
+    background-size: 28px;
+    background-position: 10px 6px;
+    padding-left: 46px;
   }
   .header-setting-col{
     float: left;
