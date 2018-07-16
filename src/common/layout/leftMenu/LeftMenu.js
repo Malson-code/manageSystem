@@ -25,7 +25,6 @@ class LeftMenu extends React.Component{
    *  第一次加载的时候  配置路由
   */
   initData = ()=>{
-    console.log(1);
     let matchId = this.props.match.params.id;
     let path = this.getPathName();
     let openPath = [],param = '';

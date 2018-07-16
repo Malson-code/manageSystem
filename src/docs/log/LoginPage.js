@@ -2,13 +2,20 @@
  *   Create by Malson on 2018/5/29
  */
 import React from 'react';
-import {Icon, Checkbox, Form, Input, Button} from 'antd';
+import {Icon, Checkbox, Form, Input, Button,Alert} from 'antd';
 import './log.scss';
 import '../../style/common.scss';
 import HandleChange from '../../common/HandleChange';
 import common from '../../common/common';
 import { withRouter } from 'react-router-dom';
+import MD5 from 'md5';
+
+//请求
+import LogActions from './actions/LogActions';
+import LogStore from './store/LogStore';
+
 const FormItem = Form.Item;
+
 
 @withRouter
 @HandleChange
@@ -16,11 +23,13 @@ class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: false
+      checked: false,
+      errMsg:'',
+      loading:false
     }
   }
-  
   componentWillMount() {
+    this.loginAjax = LogStore.listen(this.onSeverChange);
     let validRules =
         [
           {
@@ -42,22 +51,55 @@ class LoginPage extends React.Component {
     this.props.actions.initField(totalInput, validRules);
     //查看是否有记住密码
   }
+  onSeverChange = (data)=>{
+    this.setState({loading:false});
+    if(data.errMsg) {
+      this.setState({errMsg:data.errMsg});
+      return;
+    }
+    //登录成功
+    if(data.operation==="login"){
+      this.loginSuccess();
+    }
+  };
+  componentDidMount(){
+    //键盘登录
+    document.addEventListener('keydown',(e)=>{
+      let code = e.keyCode;
+      if(code===13){
+        this.onSure()
+      }
+    })
+  }
+  componentWillUnmount() {
+    this.loginAjax();
+  }
   onSure = () => {
     const {formValidate} = this.props.actions;
     if (formValidate()) {
-      window.localStorage.account = this.props.state.inputVal.account;
-      window.localStorage.password = this.props.state.inputVal.password;
-      let home = common.homeUrl || '/home';
-      this.props.history.push(home);
+      let {account,password} = this.props.state.inputVal;
+      password = MD5(password);
+      password =  MD5(password.substring(0,3)) + password;
+      let params = {
+        account,
+        password
+      };
+      this.setState({loading:true});
+      LogActions.login(params);
     }
   };
+  loginSuccess(){
+    window.localStorage.account = this.props.state.inputVal.account;
+    window.localStorage.password = this.props.state.inputVal.password;
+    let home = common.homeUrl || '/home';
+    this.props.history.push(home);
+  }
   qqLogin = ()=>{
-    console.log(QC);
-    QC.api('get_user_info', '', 'json', 'GET');
-    QC.Login.showPopup({
-      appId:"1106992696",
-      redirectURI:"http://127.0.0.1:3000/"
-    })
+    // QC.api('get_user_info', '', 'json', 'GET');
+    // QC.Login.showPopup({
+    //   appId:"1106992696",
+    //   redirectURI:"http://127.0.0.1:3000/"
+    // })
   };
   handleCheckChange = (e) => {
     this.setState({checked: e.target.checked});
@@ -65,10 +107,14 @@ class LoginPage extends React.Component {
   forgetPsw = ()=>{
     this.props.history.push('/forgetPsw');
   };
+  handleCloseAlert = ()=>{
+    this.setState({errMsg:''});
+  };
   render() {
     const formLayout = 'horizontal';
     const {validBackData, inputVal} = this.props.state;
     const {actions} = this.props;
+    let errMsg = this.state.errMsg;
     return (
         <div className='login-bg'>
           <div className='mal-login-wrap'>
@@ -83,7 +129,7 @@ class LoginPage extends React.Component {
               >
                 <Input
                     prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                    placeholder="请输入账号"
+                    placeholder="请输入账号admin/zhangqiang"
                     id='account'
                     className='login-input'
                     onChange={actions.handleInputChange}
@@ -101,7 +147,7 @@ class LoginPage extends React.Component {
                     prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
                     autosize={{minRows: 4, maxRows: 4}}
                     type='password'
-                    placeholder="请输入密码"
+                    placeholder="请输入密码123456/zhangqiang"
                     id='password'
                     size='large'
                     className='login-input'
@@ -110,6 +156,9 @@ class LoginPage extends React.Component {
                     autoComplete = 'current-password'
                 />
               </FormItem>
+              {
+                errMsg?<Alert message={ errMsg } type="error" closable  style={{marginTop:-10,marginBottom:15}} onClose={this.handleCloseAlert}/>:''
+              }
               <div style={{marginTop: 0}}>
                 <Checkbox checked={this.state.checked} onChange={this.handleCheckChange}>自动登录</Checkbox>
                 <span className='forget-password' onClick={this.forgetPsw}>忘记密码</span>
@@ -119,6 +168,7 @@ class LoginPage extends React.Component {
                   style={{width: '100%', marginTop: '15px'}}
                   onClick={this.onSure}
                   size='large'
+                  loading={this.state.loading}
               >
                 确 定
               </Button>

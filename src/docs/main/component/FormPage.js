@@ -7,31 +7,36 @@ import {Icon, Modal, Form, Input, Button,Row, Col} from 'antd';
 import HandleChange from '../../../common/HandleChange';
 const FormItem = Form.Item;
 
+/**
+ *  将表格的增删改查放在同一个界面
+*/
+
+
 @HandleChange
 class CreateFormPage extends React.Component{
   constructor(props){
     super(props);
-    this.state={
-    
-    }
+    this.state={}
   }
   init = ()=>{
-    let totalInput = ['a', 'b', 'c','d','e','f','g'],
+    let totalInput = ['name', 'age', 'phone','job','address'],//初始化  初始值为''
         validRules = [
           {
-            id: 'a',//id
-            desc: 'a',//显示的字段名
+            id: 'name',//id
+            desc: '姓名',//显示的字段名
             required: true,
             max: 20,
           },
           {
-            id:'b',
-            desc: 'b',//显示的字段名
+            id:'age',
+            desc: '年龄',//显示的字段名
             required: true
           },
           {
-            id:'c',
-            desc: 'c',//显示的字段名
+            id:'phone',
+            desc: '手机号',//显示的字段名
+            required: true,
+            other:['mobile']
           }
           
         ];
@@ -45,8 +50,11 @@ class CreateFormPage extends React.Component{
     this.init();
   }
   handleOk = ()=>{
-    this.props.handleOk();
-    this.init();
+    const {formValidate} = this.props.actions;
+    if(formValidate()){
+      this.props.handleOk();
+    }
+    // this.init();
   };
   handleCancel = ()=>{
     this.props.handleCancel();
@@ -59,7 +67,7 @@ class CreateFormPage extends React.Component{
       wrapperCol:{span:17}
     };
     const {validBackData,inputVal} = this.props.state;
-    const {actions,modalType,modalVisible} = this.props;
+    const {actions,modalType,modalVisible,btnLoading} = this.props;
     let modalTitle = modalType==='add'?'新增信息':modalType==='edit'?'编辑信息':'';
     const colNum = 24;
     return(
@@ -68,77 +76,78 @@ class CreateFormPage extends React.Component{
             visible={modalVisible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
+            confirmLoading={btnLoading}
         >
           {/*需要form根据字段长短调节的  加上classnName 'flex-form'  或者单个加  'flex-form-item'*/}
           <Form layout={formLayout}>
             <Row>
               <Col span={colNum}>
                 <FormItem
-                    help={validBackData.aHint}
-                    validateStatus={validBackData.aStatus}
-                    label="名称的的"
+                    help={validBackData.nameHint}
+                    validateStatus={validBackData.nameStatus}
+                    label="姓名"
                     {...textLabel}
                 >
-                  <Input placeholder="输入名称"
-                         id='a'
+                  <Input placeholder="输入姓名"
+                         id='name'
                          onChange={actions.handleInputChange}
-                         value={inputVal.a}
+                         value={inputVal.name}
                   />
                 </FormItem>
               </Col>
               <Col span={colNum}>
                 <FormItem
-                    help={validBackData.bHint}
-                    validateStatus={validBackData.bStatus}
-                    label="年龄我是"
+                    help={validBackData.ageHint}
+                    validateStatus={validBackData.ageStatus}
+                    label="年龄"
                     {...textLabel}
                 >
                   <Input placeholder="输入年龄"
-                         id='b'
+                         id='age'
                          onChange={actions.handleInputChange}
-                         value={inputVal.b}
+                         value={inputVal.age}
                   />
                 </FormItem>
               </Col>
               <Col span={colNum}>
                 <FormItem
-                    help={validBackData.cHint}
-                    validateStatus={validBackData.cStatus}
-                    label="年龄我是"
+                    help={validBackData.phoneHint}
+                    validateStatus={validBackData.phoneStatus}
+                    label="手机号"
                     {...textLabel}
                 >
-                  <Input placeholder="输入年龄"
-                         id='c'
+                  <Input placeholder="输入手机号"
+                         id='phone'
                          onChange={actions.handleInputChange}
-                         value={inputVal.c}
+                         value={inputVal.phone}
                   />
                 </FormItem>
               </Col>
               <Col span={colNum}>
                 <FormItem
-                    help={validBackData.dHint}
-                    validateStatus={validBackData.dStatus}
-                    label="年龄我是"
+                    help={validBackData.jobHint}
+                    validateStatus={validBackData.jobStatus}
+                    label="工作职位"
                     {...textLabel}
                 >
-                  <Input placeholder="输入年龄"
-                         id='d'
+                  <Input placeholder="输入工作职位"
+                         id='job'
                          onChange={actions.handleInputChange}
-                         value={inputVal.d}
+                         value={inputVal.job}
                   />
                 </FormItem>
               </Col>
               <Col span={colNum}>
                 <FormItem
-                    help={validBackData.eHint}
-                    validateStatus={validBackData.eStatus}
-                    label="年龄我是我是"
+                    help={validBackData.addressHint}
+                    validateStatus={validBackData.addressStatus}
+                    label="地址"
                     {...textLabel}
                 >
-                  <Input placeholder="输入年龄"
-                         id='e'
+                  <Input placeholder="输入地址"
+                         id='address'
                          onChange={actions.handleInputChange}
-                         value={inputVal.e}
+                         value={inputVal.address}
                   />
                 </FormItem>
               </Col>

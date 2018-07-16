@@ -36,6 +36,8 @@ let maxF = false;//最大长度做截断处理
  在form内的Input或其他上添加
                             onChange={actions.handleInputChange}
                             value={inputVal.(id)}
+ OK时校验                   const {formValidate} = this.props.action
+                           if (formValidate()) {xxxx}
 */
 function HandleChange(Container) {
   
@@ -192,16 +194,24 @@ function HandleChange(Container) {
         validBackData[id+'Status'] = 'error';
         validBackData[id+'Hint'] = <span className='errorHint'>{msg}</span>;
       }
-    }
-    validRules = (totalField,validRules=[])=>{
+    };
+    /**
+     *  初始化页面form以及其他数据的初始值   默认为 ''
+     *  有初始值的 通过addition传进来，addition格式为 [{key:'',defaultVal:''},{key:'',defaultVal:''},...]
+    */
+    validRules = (totalField,validRules=[],addition=[])=>{
       if(validRules instanceof Array&&validRules instanceof Array){
         totalField.map(item=>{
           this.state.inputVal[item] = '';
+          if(addition.length){
+            addition.map(jtem=>{
+              if(item===jtem.key){
+                this.state.inputVal[item] = jtem.defaultVal;
+              }
+            })
+          }
         });
-        if(validRules.length){
-          this.setState({validRules});
-        }
-        this.setState({validBackData:{}});
+        this.setState({validBackData:{},validRules});
       }
       else{
         console.warn('初始化数据错误！');
@@ -211,6 +221,7 @@ function HandleChange(Container) {
      *  初始化更新数据
     */
     initUpdataField = (data)=>{
+      //先进行深拷贝
       let inputVal = common.deepCopyValue(data);
       this.setState({inputVal});
     };

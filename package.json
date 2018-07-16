@@ -112,5 +112,13 @@
       "arrow-body-style": "off",
       "array-callback-return": "off"
     }
+  },
+  "proxy":{
+    "/manage_s":{
+      "target": "http://127.0.0.1:1235",
+      "changeOrigin": true,
+      "secure": false,
+      "pathRewrite": {"^/manage_s": ""}
+    }
   }
 }
