@@ -115,10 +115,11 @@
   },
   "proxy":{
     "/manage_s":{
-      "target": "http://127.0.0.1:1235",
+      "target": "http://127.0.0.1:1236",
       "changeOrigin": true,
       "secure": false,
       "pathRewrite": {"^/manage_s": ""}
     }
-  }
+  },
+  "note":"本项目为create react app建立"
 }
