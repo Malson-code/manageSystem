@@ -16,8 +16,8 @@ Thank `you` 我就是想显示这个 `you`
 [百度超链接](https://www.baidu.com "鼠标悬停效果")
 
 * hahah
-* hahahah2
-        * hahahah2-1
+        * hahahah2
+* hahahah2-1
 
 
 > 我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！我是书籍的一段内容！
@@ -27,6 +27,5 @@ Thank `you` 我就是想显示这个 `you`
 
 #### 图片加上超链接
 
-[![baidu]](http://baidu.com)  
-[baidu]:http://www.baidu.com/img/bdlogo.gif "百度Logo" 
+[![baidu]](http://baidu.com)[baidu]:http://www.baidu.com/img/bdlogo.gif "百度Logo" 
 
