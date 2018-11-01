@@ -2,6 +2,7 @@
  *   Create by Malson on 2018/5/29
  */
 import $ from 'jquery';
+import {validate,formValidate} from './Validate';
 export default  {
   getConfig(){
     $.getJSON('config.json',function (result) {
@@ -104,5 +105,65 @@ export default  {
       }).done(resolve).fail(reject)
     });
     return promise;
-  }
+  },
+  /**
+   *  input 内容修改
+   *  record  存储在state数据
+   *  e当前dom
+  */
+  handleInputChange($this,record,e){
+    let id = e.target.id,
+        val = e.target.value;
+    record[id] = val;
+    validate($this,record,id);
+    //更新UI
+    if($this.state.loading!=='undefined'){
+      $this.setState({loading:$this.state.loading});
+    }else{
+      $this.forceUpdate();
+    }
+  },
+  
+  /**
+   *  form表单校验方法
+  */
+  validate,
+  formValidate,
+  
+  /**
+   *  table公共属性
+  */
+  tableProps:{
+    bordered:true,
+    className:'table-header-center',
+  },
+  /**
+   *  form公共属性
+   *  state 内 hints 对象
+   *  name 当前 form的name
+   *  nameLabel 当前显示中文的label名称
+  */
+  formProps(data,name,label){
+    return {
+      help:data[name+'Hint'],
+      validateStatus:data[name+'Status'],
+      label,
+      labelCol:{span:6},
+      wrapperCol:{span:17}
+    }
+  },
+  /**
+   *  专属form Input的简写
+   *  data显示 state 中数据
+   *  id 当前 form的 id
+   *  placeholder 当前显示中文的placeholder名称
+   *
+  */
+  formInputProps(data,id,placeholder){
+    return {
+      value:data[id],
+      id,
+      placeholder:'输入' + placeholder,
+    }
+  },
 }

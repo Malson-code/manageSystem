@@ -32,7 +32,7 @@ class MalLayout extends React.Component{
           <Layout>
             <LeftMenu />
             <Layout className='mal-content-layout'>
-              <div style={{overflow:'auto',height:'100%',width:'100%',backgroundColor:'#fff'}}>
+              <div style={{overflow:'auto',height:'100%',width:'100%',backgroundColor:'#fff',position:'relative'}}>
                 <BreadcrumbCom />
                 <Content  className='mal-content'>
                   { children }

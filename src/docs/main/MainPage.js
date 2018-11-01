@@ -8,7 +8,7 @@ import FilterPage from './component/FilterPage';
 import TablePage from './component/TablePage';
 import Animate from '../components/Animate';
 import FormPage from './component/FormPage';
-import common from "../../common/common";
+import Common from "../../common/common";
 import history from '../../history';
 
 //data
@@ -23,7 +23,12 @@ class MainPage extends React.Component{
       btnLoading:false,
       modalVisible:false,
       modalType:'',
-      tableData:[],
+      tableData:[{
+        name:'1',
+        age:'2',
+        phone:"2",
+        address:'dd'
+      }],
       totalPage:0,
       currentPage:1,
     }
@@ -98,7 +103,7 @@ class MainPage extends React.Component{
   };
   handleOk = ()=>{
     let type = this.state.modalType;
-    let data = common.deepCopyValue(this.createFormPage.state.inputVal);
+    let data = Common.deepCopyValue(this.createFormPage.state.inputVal);
     this.setState({btnLoading:true});
     //点击确定  判断是新增还是编辑  调用不同的方法
     if(type==='add'){
@@ -136,10 +141,15 @@ class MainPage extends React.Component{
           <div key='1'>
             <FilterPage {...filterProps} ref={ref=>this.filter=ref}/>
             <div className='table-btns'>
-              <Button type='primary' icon='plus' onClick={this.add} className='btn-margin'>新增</Button>
+              <Button type='primary' icon='plus' onClick={this.add}>新增</Button>
               <Button icon='sync' onClick={this.refresh} className='btn-margin'>刷新</Button>
             </div>
-            <TablePage dataSource={tableData}  loading={this.state.tableLoading} {...tableProps} />
+            <TablePage
+                dataSource={tableData}
+                loading={this.state.tableLoading}
+                {...tableProps}
+                {...Common.tableProps}
+            />
             <FormPage ref={ref=>this.createFormPage = ref} {...formProps}/>
           </div>
         </Animate>

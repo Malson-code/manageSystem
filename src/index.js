@@ -4,11 +4,11 @@ import Routes from './routes';
 import Assess from './common/Assess';
 import {BrowserRouter, Route, Link, Switch,Redirect,Router,HashRouter,withRouter} from 'react-router-dom';
 import { LocaleProvider } from 'antd';
-import zh_CN from 'antd/lib/locale-provider/zh_CN';
+import zhCN from 'antd/lib/locale-provider/zh_CN';
 import 'moment/locale/zh-cn';
 import history from './history';
 ReactDOM.render(
-    <LocaleProvider locale={zh_CN}>
+    <LocaleProvider locale={zhCN}>
       <Router history={history}>
         <div style={{height:'100%',width :'100%'}}>
           <Route component={Assess}/>

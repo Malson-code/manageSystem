@@ -28,7 +28,7 @@ let MainStore = Reflux.createStore({
     common.doReteieveAjax(url, params,startPage,pageSize).then((result) => {
       $this.fireEvent($this,'retrieve', result);
     }, () => {
-      $this.fireEvent($this,'retrieve', {msg:'调用服务错误！'});
+      $this.fireEvent($this,'retrieve', {errMsg:'调用服务错误！'});
     });
   },
   onRemove: function (params) {
@@ -37,7 +37,7 @@ let MainStore = Reflux.createStore({
     common.doAjax(url, params).then((result) => {
       $this.fireEvent($this,'remove', result);
     }, () => {
-      $this.fireEvent($this,'remove', {msg:'调用服务错误！'});
+      $this.fireEvent($this,'remove', {errMsg:'调用服务错误！'});
     });
   },
   onAdd: function (params) {
@@ -46,7 +46,7 @@ let MainStore = Reflux.createStore({
     common.doAjax(url, params).then((result) => {
       $this.fireEvent($this,'addMain', result);
     }, (result) => {
-      $this.fireEvent($this,'addMain', {msg:'调用服务错误！'});
+      $this.fireEvent($this,'addMain', {errMsg:'调用服务错误！'});
     });
   },
   onUpdate: function (params) {
@@ -55,7 +55,7 @@ let MainStore = Reflux.createStore({
     common.doAjax(url, params).then((result) => {
       $this.fireEvent($this,'update', result);
     }, () => {
-      $this.fireEvent($this,'update', {msg:'调用服务错误！'});
+      $this.fireEvent($this,'update', {errMsg:'调用服务错误！'});
     });
   },
 });

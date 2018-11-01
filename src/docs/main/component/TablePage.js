@@ -31,27 +31,32 @@ class TablePage extends React.Component {
       {
         title: '姓名',
         dataIndex: 'name',
-        key:'name'
+        key:'name',
+        width:160
       },
       {
         title: '年龄（岁）',
         dataIndex: 'age',
-        key:'age'
+        key:'age',
+        width:100
       },
       {
         title: '手机号',
         dataIndex: 'phone',
-        key:'phone'
+        key:'phone',
+        width:180
       },
       {
         title: '工作职位',
         dataIndex: 'job',
-        key:'job'
+        key:'job',
+        width:180
       },
       {
         title: '地址',
         dataIndex: 'address',
-        key:'address'
+        key:'address',
+        width:360
       },
     ];
     let operaCol = {
@@ -61,7 +66,7 @@ class TablePage extends React.Component {
       width:200,
       render:(text,record)=>{
         return (
-            <div>
+            <div style={{textAlign:'center'}}>
               <Button size='small' onClick={()=>this.props.check(record)} title='查看'>查看</Button>
               <Button size='small' onClick={()=>this.props.edit(record)} className="btn-margin" title='修改'>修改</Button>
               <Button size='small' onClick={()=>this.remove(record)} className="btn-margin" title='删除' type='danger'>删除</Button>

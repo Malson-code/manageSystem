@@ -11,6 +11,9 @@ import Error404 from './docs/components/404';
 //左侧菜单路径  转换为路由信息
 import LeftMenuParams from './common/menus/LeftMenuParams';
 
+//异步加载
+import AsyncComponent from './common/AsyncComponent';
+
 /**
  *  path:匹配路径
  *  component:渲染的组件
@@ -92,4 +95,5 @@ for(let i=0;i<routes.length;i++){
       :natureCom;
   Routes.push(RouteCom);
 }
+
 export default  Routes ;

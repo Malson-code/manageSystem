@@ -84,5 +84,14 @@
 }
 /*modal center end*/
 .btn-margin{
-  margin-left: 6px;
+  margin-left: 6px!important;
+}
+
+.table-header-center .ant-table-thead th{
+  text-align: center;
+}
+
+//过滤条件 wrap
+.filter-wrap .ant-form-item{
+  margin-bottom: 0;
 }

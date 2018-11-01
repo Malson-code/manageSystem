@@ -1,9 +1,11 @@
 /**
  *   Create by Malson on 2018/5/29
  */
-import MainPage from '../../docs/main/MainPage';
-import MainDetailPage from '../../docs/main/component/MainDetailPage';
-import ChartsPage from '../../docs/charts/ChartsPage';
+import AsyncComponent from '../AsyncComponent';
+
+const MainPage = AsyncComponent(()=>import("../../docs/main/MainPage"));
+const MainDetailPage = AsyncComponent(()=>import("../../docs/main/component/MainDetailPage"));
+const ChartsPage = AsyncComponent(()=>import("../../docs/charts/ChartsPage"));
 /**
  *  name:显示字段
  *  to：点击跳转的url

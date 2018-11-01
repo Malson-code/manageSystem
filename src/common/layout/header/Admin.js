@@ -170,6 +170,7 @@ class Admin extends React.Component{
               onCancel={this.hideResetModal}
               onOk={this.resetPswOk}
               width={420}
+              mask={false}
           >
             <div style={{padding:'0 20px'}}>
               <Form layout={formLayout}>

@@ -55,7 +55,7 @@ class FilterPage extends React.Component {
     const {validBackData, inputVal} = this.props.state;
     const {actions} = this.props;
     return (
-        <div>
+        <div className='filter-wrap'>
           {/*需要form根据字段长短调节的  加上classnName 'flex-form'  或者单个加  'flex-form-item'*/}
           <Form layout={formLayout}>
             <Row>

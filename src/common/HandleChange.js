@@ -151,6 +151,12 @@ function HandleChange(Container) {
       if(m.min&&value.length < m.min){
         return '【' + m.desc + '】最少输入【' + m.max + '】个字符';
       }
+      if(m.specialChar){
+        let specialChar = /[/*`~!@#$%^&*()_+<>?:|?<>"{},.\/\\;'[\]]/im;
+        if (specialChar.test(value)){
+          return '不能输入特殊符号';
+        }
+      }
       if(m.pattern){
         if(!m.pattern.test(value)){
           if(m.patternPrompt){

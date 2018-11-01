@@ -5,6 +5,7 @@
 import React from 'react';
 import {Icon, Modal, Form, Input, Button,Row, Col} from 'antd';
 import HandleChange from '../../../common/HandleChange';
+import Common from "../../../common/common";
 const FormItem = Form.Item;
 
 /**
@@ -63,7 +64,7 @@ class CreateFormPage extends React.Component{
   render(){
     const formLayout = 'horizontal';
     const textLabel = {
-      labelCol:{span:7},
+      labelCol:{span:6},
       wrapperCol:{span:17}
     };
     const {validBackData,inputVal} = this.props.state;
@@ -82,12 +83,7 @@ class CreateFormPage extends React.Component{
           <Form layout={formLayout}>
             <Row>
               <Col span={colNum}>
-                <FormItem
-                    help={validBackData.nameHint}
-                    validateStatus={validBackData.nameStatus}
-                    label="姓名"
-                    {...textLabel}
-                >
+                <FormItem {...Common.formProps(validBackData,'name','姓名')}>
                   <Input placeholder="输入姓名"
                          id='name'
                          onChange={actions.handleInputChange}
@@ -96,12 +92,7 @@ class CreateFormPage extends React.Component{
                 </FormItem>
               </Col>
               <Col span={colNum}>
-                <FormItem
-                    help={validBackData.ageHint}
-                    validateStatus={validBackData.ageStatus}
-                    label="年龄"
-                    {...textLabel}
-                >
+                <FormItem {...Common.formProps(validBackData,'age','年龄')}>
                   <Input placeholder="输入年龄"
                          id='age'
                          onChange={actions.handleInputChange}
@@ -110,12 +101,7 @@ class CreateFormPage extends React.Component{
                 </FormItem>
               </Col>
               <Col span={colNum}>
-                <FormItem
-                    help={validBackData.phoneHint}
-                    validateStatus={validBackData.phoneStatus}
-                    label="手机号"
-                    {...textLabel}
-                >
+                <FormItem {...Common.formProps(validBackData,'phone','手机号')}>
                   <Input placeholder="输入手机号"
                          id='phone'
                          onChange={actions.handleInputChange}
@@ -124,12 +110,7 @@ class CreateFormPage extends React.Component{
                 </FormItem>
               </Col>
               <Col span={colNum}>
-                <FormItem
-                    help={validBackData.jobHint}
-                    validateStatus={validBackData.jobStatus}
-                    label="工作职位"
-                    {...textLabel}
-                >
+                <FormItem {...Common.formProps(validBackData,'job','工作职位')}>
                   <Input placeholder="输入工作职位"
                          id='job'
                          onChange={actions.handleInputChange}
@@ -138,12 +119,7 @@ class CreateFormPage extends React.Component{
                 </FormItem>
               </Col>
               <Col span={colNum}>
-                <FormItem
-                    help={validBackData.addressHint}
-                    validateStatus={validBackData.addressStatus}
-                    label="地址"
-                    {...textLabel}
-                >
+                <FormItem {...Common.formProps(validBackData,'address','地址')}>
                   <Input placeholder="输入地址"
                          id='address'
                          onChange={actions.handleInputChange}
