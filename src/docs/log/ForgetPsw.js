@@ -55,8 +55,7 @@ class ForgetPsw extends React.Component{
       },
     ];
     return(
-        <Animate>
-          <div key={1} style={{height:'100%',width:'100%'}}>
+          <div style={{height:'100%',width:'100%'}}>
             <div className='forget-psw-top'>
               开发云平台
               <span
@@ -66,23 +65,22 @@ class ForgetPsw extends React.Component{
                 返回登录
               </span>
             </div>
-            <div className='forget-psw-wrap'>
-              <div className='step-title'>找回密码</div>
-              <Steps current={step}>
-                {stepArr.map(item => <Step key={item.title} title={item.title} />)}
-              </Steps>
-              <div className='step-content'>
-                {stepArr[step].content}
+              <div className='forget-psw-wrap' key={1}>
+                <div className='step-title'>找回密码</div>
+                <Steps current={step}>
+                  {stepArr.map(item => <Step key={item.title} title={item.title} />)}
+                </Steps>
+                <div className='step-content'>
+                  {stepArr[step].content}
+                </div>
+                {
+                  step<2?<Button style={{float:'right'}} onClick={this.nextStep} type='primary' >下一步</Button>:''
+                }
+                {
+                  step!==0?<Button style={{float:'right'}} onClick={this.preStep} className='btn-margin'>上一步</Button>:''
+                }
               </div>
-              {
-                step<2?<Button style={{float:'right'}} onClick={this.nextStep} type='primary' >下一步</Button>:''
-              }
-              {
-                step!==0?<Button style={{float:'right'}} onClick={this.preStep} className='btn-margin'>上一步</Button>:''
-              }
-            </div>
           </div>
-        </Animate>
     )
   }
 }

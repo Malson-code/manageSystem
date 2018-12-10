@@ -1,7 +1,7 @@
 /**
  *   Create by Malson on 2018/5/29
  */
-import $ from 'jquery';
+// import $ from 'jquery';
 import {validate,formValidate} from './Validate';
 export default  {
   getConfig(){
@@ -10,7 +10,7 @@ export default  {
     })
   },
   /**
-   *  遍历配置文件  将属性加到common
+   *  遍历配置文件  将fetch获取的到config.json属性加到common
   */
   initConfig(obj){
     for(let i in obj){
@@ -50,9 +50,7 @@ export default  {
   ajaxBody(params){
     let paramsBody = {
       term:'17ESDje12',//标志号
-      body:{
-        object:params
-      }
+      object:params
     };
     return JSON.stringify(paramsBody);
   },
@@ -83,12 +81,27 @@ export default  {
     let promise = new Promise((resolve,reject)=>{
       let ajaxParams = this.ajaxBody(params);
       let ajaxUrl = this.initAjaxUrl(url);
-      $.ajax({
-        type:'post',
-        url:ajaxUrl,
-        data:ajaxParams,
-        contentType: 'application/json; charset=UTF-8',
-      }).done(resolve).fail(reject)
+      let options = {
+        method:'POST',
+        credentials: 'include',//带cookie
+        body:ajaxParams
+      };
+      fetch(ajaxUrl,options).then(response=>{
+        if(response.ok) {
+          return response.json();
+        }
+        throw new Error();
+      }).then(data=>resolve(data)).catch(()=>{
+        reject('调用服务错误！')
+      });
+      
+      // $.ajax({
+      //   type:'post',
+      //   url:ajaxUrl,
+      //   data:ajaxParams,
+      //   contentType: 'application/json; charset=UTF-8',
+      // }).done(resolve).fail(reject)
+      
     });
     return promise;
   },
@@ -97,12 +110,29 @@ export default  {
       let ajaxParams = this.ajaxRetrieveBody(params,startPage,pageSize);
       let ajaxUrl = this.initAjaxUrl(url);
       if(!ajaxParams||!ajaxUrl) return;
-      $.ajax({
-        type:'post',
-        url:ajaxUrl,
-        data:ajaxParams,
-        contentType: 'application/json; charset=UTF-8',
-      }).done(resolve).fail(reject)
+  
+      let options = {
+        mode: 'cors',
+        method:'POST',
+        credentials: 'include',//带cookie
+        body:ajaxParams
+      };
+  
+      fetch(ajaxUrl,options).then(response=>{
+        if(response.ok) {
+          return response.json();
+        }
+        throw new Error();
+      }).then(data=>resolve(data)).catch(()=>{
+        reject('调用服务错误！')
+      });
+      
+      // $.ajax({
+      //   type:'post',
+      //   url:ajaxUrl,
+      //   data:ajaxParams,
+      //   contentType: 'application/json; charset=UTF-8',
+      // }).done(resolve).fail(reject)
     });
     return promise;
   },

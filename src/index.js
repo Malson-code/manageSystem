@@ -7,6 +7,7 @@ import { LocaleProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import 'moment/locale/zh-cn';
 import history from './history';
+import './common/style/reset.css';
 ReactDOM.render(
     <LocaleProvider locale={zhCN}>
       <Router history={history}>

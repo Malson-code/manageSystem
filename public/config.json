@@ -2,5 +2,6 @@
   "topMenu": false,
   "topMessage":true,
   "breadcrumb":false,
-  "homeUrl":"/home"
+  "homeUrl":"/home",
+  "version":"V1.0.2.test"
 }

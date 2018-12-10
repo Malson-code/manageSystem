@@ -27,13 +27,9 @@ let LogStore = Reflux.createStore({
     let $this = this;
     let url = 'login';
     common.doAjax(url, params).then((result) => {
-      if(result.code==='200'){//success
-        $this.fireEvent($this,'login', result);
-      }else{
-        $this.fireEvent($this,'login', result);
-      }
-    }, (result) => {
-      $this.fireEvent($this,'login', {errMsg:'调用服务错误！'});
+      $this.fireEvent($this,'login', result);
+    }, (errMsg) => {
+      $this.fireEvent($this,'login', {errMsg});
     });
   },
 });
